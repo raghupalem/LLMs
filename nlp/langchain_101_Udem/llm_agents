@@ -1,0 +1,21 @@
+import os
+#os.environ["OPENAI_API_KEY"] ="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"
+
+# Action agents
+import pprint
+from langchain.agents import load_tools, initialize_agent
+#get_all_tool_names
+from langchain.llms import OpenAI
+from langchain.agents import AgentType
+
+
+prompt ="when was the 3rd president US born? what is that year raised to the power of 3?"
+
+# pp= pprint.PrettyPrinter(indent=4)
+# pp.pprint(get_all_tool_names())
+
+llm = OpenAI(temperature=0)
+tools = load_tools(['wikipedia', 'llm-math'], llm=llm)
+
+agent = initialize_agent(tools,llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
+agent.run(prompt)

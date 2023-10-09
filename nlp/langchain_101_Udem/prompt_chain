@@ -1,0 +1,15 @@
+import os
+#os.environ["OPENAI_API_KEY"] ="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"
+
+from langchain import PromptTemplate
+from langchain.llms import OpenAI
+from langchain.chains import LLMChain
+
+template = 'You are a naming consultant for new companies. what is a good name for {company} that makes {product}?'
+
+prompt = PromptTemplate.from_template(template)
+llm = OpenAI(temperature=0.9)
+
+chain = LLMChain(llm=llm, prompt=prompt)
+
+print(chain.run({'company':'ABC stratup', 'product':'colorful socks'}))

@@ -1,0 +1,15 @@
+
+
+
+#memory and chat Bots
+from langchain import OpenAI, ConversationChain
+llm = OpenAI(temperature=0)
+
+conversation = ConversationChain(llm=llm, verbose=False)
+
+print("Welcome to your AI ChatBot! what's on your mind?")
+
+for _ in range(0,4):
+    human_input= input("You: ")
+    ai_response = conversation.predict(input=human_input)
+    print(f"AI:{ai_response}")

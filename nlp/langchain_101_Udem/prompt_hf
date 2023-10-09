@@ -1,0 +1,17 @@
+
+# # Load environment variables from .env file
+# load_dotenv()
+# HUGGINGFACEHUB_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+# repo_id = "tiiuae/falcon-7b-instruct"
+
+import os
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+
+from langchain import HuggingFaceHub
+
+llm = HuggingFaceHub(repo_id="google/flan-t5-base"
+                     , model_kwargs={'temperature':0, 'max_length':64})
+
+prompt = "what are good fitness tips?"
+
+print(llm(prompt))
